@@ -1,0 +1,96 @@
+//Design Selectors:
+:root {
+    --primary-color: rgba(13, 21, 16, 0.435);
+    --secondary-color: white;
+}
+
+//Get rid of Default Margins:
+*{ 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat','sans-serif'
+}
+
+//Element Selectors:
+//0. HTML
+
+//1. Background-Image:
+.background-image {
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.3)), url('../index_images/basil_crop.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+} 
+
+.container {
+    margin: auto;
+}
+
+//--3. Logo -- 
+.logo {
+    display: flex;
+    flex-direction: row;
+}
+.logo h1 {
+    color: white;
+    padding: 1em 0em 0.5em 1.64em;
+    font-weight: none;
+}
+.logo img {
+    width: 60px;
+    height: 80px;
+    margin-top: 16px;
+}
+
+//--4. Navigtion -- 
+nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+nav li {
+    text-align: center;
+}
+
+nav li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--secondary-color);
+    padding: 5px 20px;
+}
+nav li a:hover {
+    background: white;
+    color: #333;
+}
+
+.welcome-text {
+    position: absolute; //text will be responsive
+    margin: 20% 30%; //top-bottom, left-right
+    text-align: center;
+    color: #fff;
+    //background-color: var(--primary-color);
+    border-radius: 0.5em;
+    animation: slide-up 1.4s ease-in-out, fade-in 3s; //Stack the animations
+    h1 {
+        text-transform: uppercase;
+        font-size: 2em;
+        font-size: 45px;
+    }
+}
+
+//3. Keyframes for Animations:
+@keyframes slide-up {
+    100% {
+        transform: translateY(0px);
+    }
+    0% {
+        transform: translateY(250px);
+    } 
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}

@@ -1,0 +1,512 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+  }
+
+  @property --p {
+    syntax: "<percentage>";
+    inherits: false;
+    initial-value: 0%;
+  } 
+  
+  :root {
+    --primary-color: 0 4px 8px 0 rgba(0,0,0,0.7), 0 6px 20px 0 rgba(0,0,0,0.7);
+    --secondary-color: white;
+    --quartenary-color: #0a4a09;
+    --tertiary-color: #f2f2f2f1;
+    --button-exit-coor: #E20F24;
+    --center-color: transparent;
+    --border-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    --border-hover: -2px -2px 40px rgba(255,255,255,0.1),
+      15px 15px 15px rgba(0,0,0,0.1),
+      inset -5px -5px 5px rgba(255,255,255,0.2),
+      inset 5px 5px 5px rgba(0,0,0,0.1);
+    --font-size: 2rem;
+  }
+  
+  p {
+    color: white;
+    margin: auto;
+    padding: 0.5em;
+    text-indent: 50px;
+    font-size: 16px;
+  }
+  
+  body {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.6))), url("../../images/garden.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.6)), url("../../images/garden.jpg");
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+    background-color: black;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  
+  .logo h1 {
+    color: white;
+    padding: 1em 0em 0.5em 1.64em;
+    font-weight: none;
+  }
+  
+  .logo img {
+    width: 60px;
+    height: 80px;
+    margin-top: 16px;
+  }
+  
+  nav ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    list-style-type: none;
+  }
+  
+  nav li {
+    text-align: center;
+  }
+  
+  nav li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--secondary-color);
+    padding: 5px 20px;
+  }
+  
+  nav li a:hover {
+    background: white;
+    color: #333;
+  }
+  
+  .center .container {
+    .table-section {
+        display: flex;
+        justify-content: center;
+    }
+
+    table th, td{
+        border: 1px solid white;
+        padding: 5px;
+    }
+
+    table tr td img {
+        width: 60px;
+        height: 60px;
+    }
+
+    table tr td p {
+        text-align: center;
+    }
+
+    .tables {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .dial-table {
+      margin-left: 1.25em;
+      text-align: center; /* Aligns the content of the table horizontally */
+      border-collapse: collapse; /* Makes the borders collapse into a single border */
+    }
+
+    .dial-table td {
+      border: none;
+    }
+  
+    .image-cell {
+        //position: relative; /* Required for positioning the circle */
+        width: 150px; /* Adjust the width of each cell */
+        height: 150px; /* Adjust the height of each cell */
+        border-radius: 50%; /* Creates a circular shape for the cell */
+        overflow: hidden; /* Ensures the image stays within the circular shape */
+        margin: 1.16em;
+        //animation: borderAnimation 2s linear infinite;
+    }
+    
+    .image-cell img {
+        display: block; /* Ensures the image behaves as a block-level element */
+        //margin: auto; /* Center-aligns the image horizontally within its container */
+        max-width: 100%; /* Ensures the image does not exceed the cell dimensions */
+        max-height: 100%; /* Ensures the image does not exceed the cell dimensions */
+        position: absolute; /* Required for positioning the image */
+        top: 50%; /* Positions the image at the top of the cell */
+        //bottom: 50%; /* Positions the image at the bottom of the cell */
+        left: 50%; /* Positions the image at the left of the cell */
+        //right: 50%; /* Positions the image at the right of the cell */
+        transform: translate(-50%, -50%);
+        border: 2px solid transparent; /* Creates a transparent border around the image */
+    }
+  }
+
+  //---------------PROGRESS CIRCLE STUFF----------------------:
+  .dial-container {
+    width: 420px;
+    padding: 50px 0px;
+    border-radius: 8px;
+    background: #fff;
+    flex-direction: column;
+    align-items: center;
+  }
+  .humidity-progress {
+    position: relative;
+    //height: 250px;
+    //width: 250px;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    //NOTE: the JavaScript conic-gradient is what actually gets applied!
+    background: conic-gradient(#1efb22, 0deg, #444444 0deg); 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+  }
+  .humidity-progress::before {
+    content: "";
+    position: absolute;
+    //height: 210px;
+    //width: 210px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #000000;
+  }
+  .humidity-value {
+    position: relative;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1efb22;
+  }
+  .temp-progress {
+    position: relative;
+    //height: 250px;
+    //width: 250px;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    //NOTE: the JavaScript conic-gradient is what actually gets applied!
+    background: conic-gradient(#fb1e1e, 0deg, #444444 0deg);
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+  }
+  .temp-progress::before {
+    content: "";
+    position: absolute;
+    //height: 210px;
+    //width: 210px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #000000;
+  }
+  .temp-value {
+    position: relative;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fb1e1e;
+  }
+
+  .moist-progress {
+    position: relative;
+    //height: 250px;
+    //width: 250px;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    //NOTE: the JavaScript conic-gradient is what actually gets applied!
+    background: conic-gradient(#1ef0fb, 0deg, #444444 0deg);
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+  }
+  .moist-progress::before {
+    content: "";
+    position: absolute;
+    //height: 210px;
+    //width: 210px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #000000;
+  }
+  .moist-value {
+    position: relative;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1ef0fb;
+  }
+
+
+  .battery-progress {
+    position: relative;
+    //height: 250px;
+    //width: 250px;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    //NOTE: the JavaScript conic-gradient is what actually gets applied!
+    background: conic-gradient(#ecfb1e, 0deg, #444444 0deg);
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+  }
+  .battery-progress::before {
+    content: "";
+    position: absolute;
+    //height: 210px;
+    //width: 210px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #000000;
+  }
+  .battery-value {
+    position: relative;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ecfb1e;
+  }
+  //---------------PROGRESS CIRCLE STUFF----------------------:
+  
+  .center .container .sensorgraph .sensorgraph-body {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 1.5em;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .center .container .sensorgraph .sensorgraph-body h1 {
+    font-size: auto;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .center .container .sensorgraph .sensordisplay {
+    margin-bottom: 4em;
+    background-color: var(--tertiary-color);
+    -webkit-box-shadow: var(--border-shadow);
+            box-shadow: var(--border-shadow);
+    padding: 10px;
+    border-radius: 20px;
+  }
+  
+  .buttons {
+    text-align: center;
+    width: auto;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    background: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  
+  .buttons .button {
+    position: relative;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    border-radius: 0.5em;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .buttons .onbutton {
+    background-color: white;
+    color: black;
+    margin-left: 2em;
+    margin-right: 0.5em;
+  }
+  
+  .buttons .onbutton:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .buttons .offbutton {
+    background-color: white;
+    color: black;
+    margin-left: 0.5em;
+    margin-right: 2em;
+  }
+  
+  .buttons .offbutton:hover {
+    background-color: #ee5860;
+    color: white;
+  }
+  
+  .ui_wrapper {
+    width: auto;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    background: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    /*
+      .ui_text_field input:focus + label {
+          margin-top: -42px;
+          color: white;
+      }
+      */
+    /*
+      .ui_text_field input:not([value=""]) + label{
+          margin-top: -42px;
+          color: white;
+      }
+      */
+  }
+  
+  .ui_wrapper .ui_text_field {
+    width: 48%;
+    position: relative;
+  }
+  
+  .ui_wrapper .ui_text_field input {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    padding: 15px;
+    border: 1px solid lightgray;
+    color: black;
+    font-size: 16px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--tertiary-color);
+  }
+  
+  .ui_wrapper .ui_text_field label {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    -webkit-transform: translateY(-200%);
+            transform: translateY(-200%);
+    pointer-events: none;
+    color: white;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+  }
+  
+  .ui_wrapper .ui_text_field input:not([value=""]) {
+    border-width: 2px;
+  }
+  
+  .footer {
+    background-color: var(--primary-color);
+    padding: 1px;
+  }
+  
+  .footer .paragraph {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    padding-top: 16px;
+  }
+  
+  .settings {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    float: left;
+    gap: 16px;
+  }
+  
+  .downloadBtn {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  }
+  
+  .downloadBtn:hover {
+    background-color: gray;
+  }
+  
+  .downloadBtn img {
+    margin: 0.5em;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .notificationBtn {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  }
+  
+  .notificationBtn:hover {
+    background-color: gray;
+  }
+  
+  .notificationBtn img {
+    margin: 0.5em;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .vpdgraph .vpdgraph-body {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 1.5em;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .vpdgraph .vpdgraph-body h1 {
+    font-size: auto;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .vpdgraph .vpddisplay {
+    margin-bottom: 4em;
+    background-color: var(--tertiary-color);
+    -webkit-box-shadow: var(--border-shadow);
+            box-shadow: var(--border-shadow);
+    padding: 10px;
+    border-radius: 20px;
+  }
+  /*# sourceMappingURL=index.css.map */
